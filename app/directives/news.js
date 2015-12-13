@@ -1,12 +1,14 @@
 app.directive('news', ['$location', function($location){
   var curUrl = $location.absUrl();
   var templateUrl;
-  
+
   if (curUrl.indexOf('localhost') > -1){
     templateUrl = 'app/templates/_news.html';
   } else {
-    templateUrl = 'politics-through-pantip/app/templates/_news.thml';
+    templateUrl = 'politics-through-pantip/app/templates/_news.html';
   }
+  console.log(curUrl);
+  console.log(templateUrl);
 
   function link(scope, el, attr){
     el = el[0];
