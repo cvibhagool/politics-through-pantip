@@ -23,6 +23,6 @@ app.directive('news', function(){
     link: link,
     restrict: 'E',
     scope: { data: '=', curSpike: '='},
-    templateUrl: '/app/templates/_news.html'
+    templateUrl: 'app/templates/_news.html'
   };
 });
