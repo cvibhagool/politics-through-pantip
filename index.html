@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title></title>
+  </head>
+  <style>
+    body, html{
+      width: 100%;
+      height: 100%;
+    }
+
+    h1,h2,h3,h4,h5,h6,p,a,text{
+        font-family: 'Source Sans Pro', sans-serif !important;
+        -webkit-font-smoothing: antialiased !important;
+    }
+
+    .text{
+      margin-top: 5px;
+      line-height: 1.5;
+      font-size: 17px;
+      margin-top:10px;
+    }
+
+    svg{
+      font: 10px sans-serif;
+      display: block;
+      margin:auto;
+    }
+    .area {
+      fill: #0000ff;
+      clip-path: url(#clip);
+      stroke: #4040e8;
+      fill-opacity: 0.35
+    }
+
+    .axis path,
+    .axis line {
+      fill: none;
+      stroke: none;
+      shape-rendering: crispEdges;
+    }
+
+    posts-single{
+      display: block;
+      height: 400px;
+      width:66%;
+      float:left;
+    }
+
+    .single-posts{
+      margin-top:15px;
+    }
+
+    .multi-posts{
+      margin-top:15px;
+    }
+
+    posts-multiple{
+      display: block;
+      height: 400px;
+      width:80%;
+    }
+
+    .brush .background{
+      width:100%;
+      height: 100%;
+    }
+
+    .brush .extent {
+      stroke: #fff;
+      fill-opacity: .125;
+      shape-rendering: crispEdges;
+    }
+
+    .news-table{
+      display:block;
+      width:30%;
+      overflow: hidden;
+      font-size:10px;
+      height:400px;
+      overflow: hidden;
+      white-space: nowrap;
+      border:4px;
+    }
+
+    .news-table .list-group-item{
+      border:0px;
+    }
+
+    .news-table .list-group{
+      overflow:scroll;
+      white-space: nowrap;
+      height:320px;
+    }
+
+    .news-heading{
+      text-align: center;
+      font-size: 12px;
+      font-weight:bold;
+    }
+
+    .news-thumbnail{
+      width:35px;
+      height:35px;
+    }
+
+    .line {
+      fill: none;
+      stroke: steelblue;
+      stroke-width: 1.5px;
+      clip-path: url(#clip-m);
+    }
+
+    .single-search{
+      width: 30%;
+    }
+</style>
+
+  <script src="assets/dist/js/lib.min.js"></script>
+  <script src="bower_components/oi.select/dist/select.js"></script>
+  <link rel="stylesheet" href="assets/dist/css/lib.min.css">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
+  <body ng-app="myApp">
+    <div class = "shell container">
+      <div class = "header">
+        <h1> Thai Politics through Pantip </h1>
+      </div>
+      <div class = "text">
+        <p><a href="http://pantip.com" target="_blank">Pantip.com</a> is the de facto discussion forum about everything in Thailand, and there is no close second. One of its sub forums, <a href="http://pantip.com/forum/rajdumnern" target="_blank">Rajdumnern</a>, houses the discussion of politics and current events in Thailand. Because of its active community, and relative anonymity, Rajdumnern is often at the crosshair of political censorship. In September 2006, it was briefly shut down when the military staged a coup. The administrators shut down it down due to pressure from Ministry of Information and Communication in April 2007, and again in May 2010 citing their ‘uneasiness of being part of Thailand’s disharmony’. Nowadays Pantip practices self-censorship more than ever. Hence, the frequency of direct censorship orders and pressures from the government have gone down. It should be mentioned that posting on Pantip requires your national Thai ID as part of the registration.  Thus, Pantip does not provide a total anonymous space for political expression. But, it still captures the majority of public’s mood at each point in time. Because I *love* data and Thai politics, it is no brainer that I should somehow collect the data from Rajdumnern, and see what I could make of it.</p>
+      </div>
+      <div class = "all-posts" ng-controller="SingleCtrl" ng-init="init(['_all'])">
+        <div class = "main">
+          <posts-single data="data" cur-spike='curSpike'></posts-single>
+          <news data="data" cur-spike='curSpike'></news>
+        </div>
+      </div>
+      <div class = "text">
+        <p>I collected every post in Rajdumnern from December 2012, right after Pantip upgraded their system, to the present day. I had wanted to collect the comments, but that proved to be way too many - I had more than 1 million comments before giving up. The graph above shows the number of posts per day. You might notice that the spikes in number of daily posts correspond to different important political events in Thailand, and you would be right!</p>
+
+        <p>The red markers are in place of spikes of number of daily posts. These spikes are determined by an algorithm, so some of them may be missing or look a bit out of place. If you think about it, spikes are easy to determine visually, but there isn't a clear quantitative definition of a spike. If you are interested in more the technical details behind this project, feel free visit <a href="http://benv.io/posts">here</a>. To give more contexts to these spikes, we should try to understand the current events at each point in time. To do that, I grab ten news headlines from Google News with keyword ‘การเมือง’ (‘politics’ in Thai) on each date of spike. You can see the news to the right of the graph, and if you hover over the red markers, the news will change to the corresponding date.
+        </p>
+      </div>
+
+
+      <hr>
+
+      <h2> What's on People's Mind </h2> 
+
+      <div class = "text">
+        <p>Next, we can dive a little bit deeper to see how popular a topic is overtime. In this case, we are interested in the proportion of number of posts containing a certain keyword per day. Basically, any post with the keyword in its title or body is counted, and divided by the total number of posts from that day. Note that I mentioned earlier that I did not collect the comments, so I could not include it as part of the analysis. Like before, the spikes and news are also shown here.</p>
+       </div>
+
+      <div class = "header">
+        <h3> Prayuth </h3>
+      </div>
+
+      <div class = "row">
+        <img class = "img-thumbnail" style='float:left;width:150px;height:150px; margin-right:10px; margin-left:10px;' src="assets/dist/img/prayuth.jpg"/>
+        <div class = "text">
+        <p>Speaking of poularity (in context of this project), there can't be a more popular person than our current unelected Prime Minister, General Prayuth Chan-o-cha who launched the military coup against the government and assumed control of the country in May 2014. We apply the idea above to the keyword ‘ประยุทธ์’, his first name, and the name most people use when they refer to him. I am sure that he has other nick names, but let’s not go there for now. You can see below that he became very popular after the coup in May 2014. He was most talked about on November 4, 2014 when he wanted crack down on political movements using Article 44 of the Interim Constitution. 
+        </div>
+        </p>
+      </div>
+
+      <div class = "single-posts" ng-controller="SingleCtrl" ng-init="init(['ประยุทธ์'])">
+        <div class = "main">
+          <form class="input-group single-search" ng-submit="submit()">
+            <input type="text" ng-model="text" name="text" class="form-control" placeholder="ประยุทธ์">
+            <span class="input-group-btn">
+              <input ng-disabled="submitted" class="btn btn-default" type="submit" id="submit" value="Submit" />
+              <img ng-show="submitted" src="assets/dist/img/hourglass.svg">
+            </span>
+          </form>
+          <search-single data="data" cur-spike='curSpike'></search-single>
+          <posts-single data="data" cur-spike='curSpike'></posts-single>
+          <news data="data" cur-spike='curSpike'></news>
+        </div>
+      </div>
+
+      <div class = "text">
+        <p>Notice that there is input box for you to put in any keywords you want to query. Let me know if you find something interesting!</p>
+      </div>
+
+      <hr>
+
+      <h2> Versus </h2>
+
+      <div class = "text">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam neque massa, bibendum ut augue at, dapibus consequat erat. Donec ullamcorper neque vitae felis eleifend, vitae pulvinar purus dapibus. In venenatis egestas nulla et sodales. Curabitur ac vestibulum eros, vitae vulputate tortor. Integer convallis elit id nisi scelerisque ultrices. Vivamus dapibus purus eu lectus mattis varius. Suspendisse potenti. Integer lorem tellus, porttitor eu varius eget, rhoncus ut dui. Pellentesque ultrices lobortis sapien sit amet luctus. Etiam commodo ex quis quam lobortis tempor. Praesent sed nulla justo. Cras eu erat libero. Fusce ac varius nisl, ut hendrerit elit. Phasellus magna est, consectetur id blandit ut, lacinia sollicitudin enim. Aliquam tempor mauris vel libero varius malesuada.</p>
+      </div>
+      
+      <div class = "header">
+        <h3> Red vs Yellow vs White </h3>
+      </div>
+
+
+      <div class = "multi-posts" ng-controller="MultiCtrl" ng-init="init(['แดง,เหลือง,ขาว'])">
+        <div class = "main">
+          <oi-select
+              ng-model="bundle1"
+              multiple
+              oi-select-options="{
+                  newItem: true,
+                  saveTrigger: 'enter blur space . , ;'
+              }"
+              placeholder="Select"
+          ></oi-select>
+          <posts-multiple data="data"></posts-multiple>
+        </div>
+      </div>
+
+      <hr>
+
+      <h2> Conclusion </h2>
+
+      <div class = "text">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam neque massa, bibendum ut augue at, dapibus consequat erat. Donec ullamcorper neque vitae felis eleifend, vitae pulvinar purus dapibus. In venenatis egestas nulla et sodales. Curabitur ac vestibulum eros, vitae vulputate tortor. Integer convallis elit id nisi scelerisque ultrices. Vivamus dapibus purus eu lectus mattis varius. Suspendisse potenti. Integer lorem tellus, porttitor eu varius eget, rhoncus ut dui. Pellentesque ultrices lobortis sapien sit amet luctus. Etiam commodo ex quis quam lobortis tempor. Praesent sed nulla justo. Cras eu erat libero. Fusce ac varius nisl, ut hendrerit elit. Phasellus magna est, consectetur id blandit ut, lacinia sollicitudin enim. Aliquam tempor mauris vel libero varius malesuada.</p>
+      </div>
+
+
+    </div>
+  </body>
+
+  <script src="assets/dist/js/app.min.js"></script>
+</html>

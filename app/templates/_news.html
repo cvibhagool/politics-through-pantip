@@ -1,0 +1,14 @@
+<div class="news-table">
+    <div class="list-group-item news-heading">
+    <span class 'news-title'><p>News on {{curSpike | date:'MMMM d, y'}}</p></span>
+    </div>
+  <div class="list-group" style = "margin-bottom:0px">
+    <div class="list-group-item" ng-repeat = "news in newsItems">
+      <div>
+      <img class = 'news-thumbnail' ng-src='{{news.img_url}}'>
+      <span class 'news-title'><a ng-href="{{news.url}}" target="_blank">{{news.title}}</a></span>
+      </div>
+      <div class 'news-title'>{{news.date}} - {{news.source}}</div>
+    </div>
+  </div>
+</div>
