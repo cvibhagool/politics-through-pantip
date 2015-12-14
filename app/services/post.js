@@ -1,4 +1,13 @@
-app.factory('postService', ['$http', function($http) {
+app.factory('postService', ['$http','$location', function($http,$location) {
+  
+  //Ghetto way of detecting environment
+  var curUrl = $location.absUrl();
+  var apiRoot;
+  if ((curUrl.indexOf('localhost') > -1) || (curUrl.indexOf('127.0.0.1') > -1)){
+    apiRoot = 'http://localhost:5000/';
+  } else {
+    apiRoot = 'http://openkala.com/';
+  }
 
   var cleanData = function(data){
     var series = data.series;
@@ -41,7 +50,6 @@ app.factory('postService', ['$http', function($http) {
       callback(data);
     }
     else{
-      var apiRoot = 'http://localhost:5000/';
       var keywordsStr = keywords.join(',');
       var requestUrl = apiRoot + 'pantip?keyword=' + keywordsStr;
       $http.get(requestUrl).
