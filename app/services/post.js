@@ -42,7 +42,7 @@ app.factory('postService', ['$http','$location', function($http,$location) {
   };
 
   var getPosts = function(keywords, callback){
-    var key_list = keywords.sort();
+    var key_list = keywords.slice().sort();
     var key = key_list.toString();
     if (clientCache[key]){
       rawData = clientCache[key];

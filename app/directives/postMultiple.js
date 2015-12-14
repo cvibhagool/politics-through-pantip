@@ -8,8 +8,6 @@ app.directive('postsMultiple', function(){
 
     var svg = d3.select(el).append('svg');
 
-    var color = d3.scale.category10();
-
     var x = d3.time.scale(),
         x2 = d3.time.scale(),
         y = d3.scale.linear(),
@@ -86,10 +84,6 @@ app.directive('postsMultiple', function(){
         .attr("width", width)
         .attr("height", height);
 
-      //Resize area charts
-      //area.y0(height);
-      // area2.y0(height2);
-
       //Update range
       x.range([0, width]);
       x2.range([0, width]);
@@ -102,6 +96,8 @@ app.directive('postsMultiple', function(){
     scope.$watch('data', update);
 
     function update(){
+      var color = d3.scale.category10();
+
       if(!scope.data){ return;}
 
       if (data.type === 'absolute'){
@@ -120,6 +116,9 @@ app.directive('postsMultiple', function(){
       y.domain([0, d3.max(series, function(s) { return d3.max(s.posts, function(p) { return p.posts_count;});} )]);
       x2.domain(x.domain());
       y2.domain(y.domain());
+
+      //Clean up old data
+      svg.selectAll('.series').remove();
 
       var seriesLine = lineG
           .data(series)
@@ -153,7 +152,10 @@ app.directive('postsMultiple', function(){
         .attr("transform", "translate(0," + height2 + ")")
         .call(xAxis2);
 
-      var legend = focus.selectAll(".legend")
+      var legend = focus.selectAll(".legend");
+      legend.remove();
+
+      legend = focus.selectAll(".legend")
         .data(color.domain())
       .enter().append("g")
         .attr("class", "legend")

@@ -2,6 +2,13 @@ module.exports = function(grunt) {
 
   grunt.initConfig({
     concat: {
+      build: {
+        files: {
+          'assets/dist/js/lib.min.js': ['bower_components/angular/angular.min.js','bower_components/d3/d3.min.js', 'bower_components/oi.select/dist/select.js'],
+          'assets/dist/js/client.min.js': ['assets/client/**/*.js'],
+          'assets/dist/js/app.min.js': ['app/**/*.js']
+        }
+      }
     },
     uglify: {
       build: {
@@ -20,22 +27,20 @@ module.exports = function(grunt) {
           'assets/dist/css/client.min.css' : ['assets/client/**/*.css']
         }
       }
-        // Add filespec list here
     },
 
     watch: {
       scripts: {
         files: [
-          'public/client/**/*.js',
-          'public/lib/**/*.js',
+          'assets/client/**/*.js',
+          'app/**/**.js',
         ],
         tasks: [
-          'concat',
-          'uglify'
+          'concat'
         ]
       },
       css: {
-        files: 'public/*.css',
+        files: 'assets/client/**/*.css',
         tasks: ['cssmin']
       }
     }

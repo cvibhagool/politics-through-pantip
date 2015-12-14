@@ -4,6 +4,7 @@ app.controller('MultiCtrl', ['$scope', '$window', '$http', 'postService', functi
   //For initializing keywords for the particular controller instnace
   $scope.init = function(keywords){
     $scope.keywords = keywords;
+    $scope.searchBox = keywords;
     $scope.submitted = false;
     postService.getPosts($scope.keywords,function(data){
       $scope.data = data;
@@ -11,9 +12,9 @@ app.controller('MultiCtrl', ['$scope', '$window', '$http', 'postService', functi
   };
 
   $scope.submit = function(){
-    if ($scope.text){
+    if ($scope.searchBox){
       $scope.submitted = true;
-      $scope.keywords = [$scope.text];
+      $scope.keywords = $scope.searchBox;
       postService.getPosts($scope.keywords,function(data){
         $scope.data = data;
         $scope.submitted = false;

@@ -127,7 +127,7 @@
         <h1> Thai Politics through Pantip </h1>
       </div>
       <div class = "text">
-        <p><a href="http://pantip.com" target="_blank">Pantip.com</a> is the de facto discussion forum about everything in Thailand, and there is no close second. One of its sub forums, <a href="http://pantip.com/forum/rajdumnern" target="_blank">Rajdumnern</a>, houses the discussion of politics and current events in Thailand. Because of its active community, and relative anonymity, Rajdumnern is often at the crosshair of political censorship. In September 2006, it was briefly shut down when the military staged a coup. The administrators shut down it down due to pressure from Ministry of Information and Communication in April 2007, and again in May 2010 citing their ‘uneasiness of being part of Thailand’s disharmony’. Nowadays Pantip practices self-censorship more than ever. Hence, the frequency of direct censorship orders and pressures from the government have gone down. It should be mentioned that posting on Pantip requires your national Thai ID as part of the registration.  Thus, Pantip does not provide a total anonymous space for political expression. But, it still captures the majority of public’s mood at each point in time. Because I *love* data and Thai politics, it is no brainer that I should somehow collect the data from Rajdumnern, and see what I could make of it.</p>
+        <p><a href="http://pantip.com" target="_blank">Pantip.com</a> is the de facto discussion forum about everything in Thailand, and there is no close second. One of its sub forums, <a href="http://pantip.com/forum/rajdumnern" target="_blank">Rajdumnern</a>, houses the discussion of politics and current events in Thailand. Because of its active community, and relative anonymity, Rajdumnern is often at the crosshair of political censorship. In September 2006, it was briefly shut down when the military staged a coup. The administrators shut down it down due to pressure from Ministry of Information and Communication in April 2007, and again in May 2010 citing their ‘uneasiness of being part of Thailand’s disharmony’. Nowadays Pantip practices self-censorship more than ever. Hence, the direct censorship orders and pressures from the government happen less often. It should be mentioned that posting on Pantip requires your national Thai ID as part of the registration.  Thus, Pantip does not provide a total anonymous space for political expression. But, it still captures the majority of public’s mood at each point in time. Because I <b>*love*</b> data and Thai politics, it is no brainer that I should somehow collect the data from Rajdumnern, and see what I could make of it.</p>
       </div>
       <div class = "all-posts" ng-controller="SingleCtrl" ng-init="init(['_all'])">
         <div class = "main">
@@ -136,7 +136,7 @@
         </div>
       </div>
       <div class = "text">
-        <p>I collected every post in Rajdumnern from December 2012, right after Pantip upgraded their system, to the present day. I had wanted to collect the comments, but that proved to be way too many - I had more than 1 million comments before giving up. The graph above shows the number of posts per day. You might notice that the spikes in number of daily posts correspond to different important political events in Thailand, and you would be right!</p>
+        <p>I built and scraper and collected every post in Rajdumnern from December 2012, right after Pantip upgraded the website, to the present day. I had wanted to collect the comments, but that proved to be too many to be worth the effort and time - I had more than 1 million comments before giving up. The graph above shows the number of posts per day. You might notice that the spikes in number of daily posts correspond to different important political events in Thailand, and you would be right!</p>
 
         <p>The red markers are in place of spikes of number of daily posts. These spikes are determined by an algorithm, so some of them may be missing or look a bit out of place. If you think about it, spikes are easy to determine visually, but there isn't a clear quantitative definition of a spike. If you are interested in more the technical details behind this project, feel free visit <a href="http://benv.io/posts">here</a>. To give more contexts to these spikes, we should try to understand the current events at each point in time. To do that, I grab ten news headlines from Google News with keyword ‘การเมือง’ (‘politics’ in Thai) on each date of spike. You can see the news to the right of the graph, and if you hover over the red markers, the news will change to the corresponding date.
         </p>
@@ -158,7 +158,7 @@
       <div class = "row">
         <img class = "img-thumbnail" style='float:left;width:150px;height:150px; margin-right:10px; margin-left:10px;' src="assets/dist/img/prayuth.jpg"/>
         <div class = "text">
-        <p>Speaking of poularity (in context of this project), there can't be a more popular person than our current unelected Prime Minister, General Prayuth Chan-o-cha who launched the military coup against the government and assumed control of the country in May 2014. We apply the idea above to the keyword ‘ประยุทธ์’, his first name, and the name most people use when they refer to him. I am sure that he has other nick names, but let’s not go there for now. You can see below that he became very popular after the coup in May 2014. He was most talked about on November 4, 2014 when he wanted crack down on political movements using Article 44 of the Interim Constitution. 
+        <p>Speaking of poularity (in context of this project), there can't be a more popular person than our current unelected Prime Minister, General Prayuth Chan-o-cha who launched the military coup against the government and assumed control of the country in May 2014. We apply the idea above to the keyword ‘ประยุทธ์’, his first name, and the name most people use when they refer to him. I am sure that he has other nick names, but let’s not go there for now. You can see below that he became very popular after the coup in May 2014. He was most talked about on November 4, 2014 when he talked abouting cracking down on political movements using Article 44 of the Interim Constitution. 
         </div>
         </p>
       </div>
@@ -195,17 +195,22 @@
       </div>
 
 
-      <div class = "multi-posts" ng-controller="MultiCtrl" ng-init="init(['แดง,เหลือง,ขาว'])">
+      <div class = "multi-posts" ng-controller="MultiCtrl" ng-init="init(['แดง','เหลือง','ขาว'])">
         <div class = "main">
           <oi-select
-              ng-model="bundle1"
+              ng-model="searchBox"
               multiple
               oi-select-options="{
                   newItem: true,
                   saveTrigger: 'enter blur space . , ;'
               }"
               placeholder="Select"
+              style = ""
           ></oi-select>
+          <span class="input-group-btn">
+            <input ng-disabled="submitted" class="btn btn-default" ng-click = "submit()" value = "submit"/>
+            <img ng-show="submitted" src="assets/dist/img/hourglass.svg">
+          </span>
           <posts-multiple data="data"></posts-multiple>
         </div>
       </div>
