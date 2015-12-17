@@ -113,7 +113,8 @@ app.directive('postsMultiple', function(){
       var firstSeries = series[0];
 
       x.domain(d3.extent(firstSeries.posts.map(function(d) { return d.date_time; })));
-      y.domain([0, d3.max(series, function(s) { return d3.max(s.posts, function(p) { return p.posts_count;});} )]);
+      y.domain([d3.min(series, function(s) { return d3.min(s.posts, function(p) { return p.posts_count;});} ), 
+               d3.max(series, function(s) { return d3.max(s.posts, function(p) { return p.posts_count;});} )]);
       x2.domain(x.domain());
       y2.domain(y.domain());
 
