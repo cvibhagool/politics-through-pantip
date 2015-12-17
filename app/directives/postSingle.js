@@ -1,8 +1,8 @@
 app.directive('postsSingle', function(){
   function link(scope, el, attr){
     el = el[0];
-    var margin = {top: 50, right: 10, bottom: 100, left: 40},
-      margin2 = {top: 320, right: 10, bottom: 20, left: 40};
+    var margin = {top: 50, right: 10, bottom: 100, left: 50},
+      margin2 = {top: 330, right: 10, bottom: 20, left: 50};
 
     var width, height, height2, cW, cH;
 
@@ -65,6 +65,11 @@ app.directive('postsSingle', function(){
 
     var eventMarkersArea = focus.append("g")
       .attr("class", "eventMarkersArea");
+      
+    var arc = d3.svg.arc()
+        .outerRadius(15 / 2)
+        .startAngle(0)
+        .endAngle(function(d, i) { return i ? -Math.PI : Math.PI; });
 
     scope.$watch(function(){ 
       cH = el.clientHeight;
@@ -166,6 +171,15 @@ app.directive('postsSingle', function(){
         .attr("text-anchor", "middle")  
         .style("font-size", "14px")
         .text(title);
+
+      brush.extent(d3.extent(posts.map(function(d) { return d.date_time; })));
+      svg.select(".brush").call(brush);
+      brushed();
+
+      svg.selectAll(".resize").append("path")
+      .attr("class", "handle")
+      .attr("transform", "translate(0," +  45 / 2 + ")")
+      .attr("d", arc);
     }
 
     function updateMarkers(){
