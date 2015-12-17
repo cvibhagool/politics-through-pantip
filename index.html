@@ -10,6 +10,20 @@
       height: 100%;
     }
 
+    input{
+      border-radius: 0px !important;
+    }
+
+    .select-search{
+      border-radius: 0px !important;
+    }
+
+    .btn{
+      color: #ffffff !important;
+      background-color: #18bc9c !important;
+      border-color: #18bc9c !important;
+    }
+
     h1,h2,h3,h4,h5,h6,p,a,text{
         font-family: 'Source Sans Pro', sans-serif !important;
         -webkit-font-smoothing: antialiased !important;
@@ -176,14 +190,13 @@
 
       <div class = "single-posts" ng-controller="SingleCtrl" ng-init="init(['ประยุทธ์'])">
         <div class = "main">
-          <form class="input-group single-search" ng-submit="submit()">
+          <form class="input-group single-search" ng-submit="submit()" style="margin: 0 auto; margin-bottom:10px;">
             <input type="text" ng-model="text" name="text" class="form-control" placeholder="ประยุทธ์">
             <span class="input-group-btn">
-              <input ng-disabled="submitted" class="btn btn-default" type="submit" id="submit" value="Submit" />
+              <input ng-disabled="submitted" class="btn btn-default" type="submit" id="submit" value="Search" />
               <img ng-show="submitted" src="assets/dist/img/hourglass.svg">
             </span>
           </form>
-          <search-single data="data" cur-spike='curSpike'></search-single>
           <posts-single data="data" cur-spike='curSpike'></posts-single>
           <news data="data" cur-spike='curSpike'></news>
         </div>
@@ -199,20 +212,22 @@
 
       <div class = "multi-posts" ng-controller="MultiCtrl" ng-init="init(['แดง','เหลือง','สลิ่ม'])">
         <div class = "main">
-          <oi-select
-              ng-model="searchBox"
-              multiple
-              oi-select-options="{
-                  newItem: true,
-                  saveTrigger: 'enter blur space . , ;'
-              }"
-              placeholder="Select"
-              style = ""
-          ></oi-select>
-          <span class="input-group-btn">
-            <input ng-disabled="submitted" class="btn btn-default" ng-click = "submit()" value = "submit"/>
-            <img ng-show="submitted" src="assets/dist/img/hourglass.svg">
-          </span>
+          <div class = "multi-input" class = "style:margin: 0 auto;">
+            <oi-select
+                ng-model="searchBox"
+                multiple
+                oi-select-options="{
+                    newItem: true,
+                    saveTrigger: 'enter blur space . , ;'
+                }"
+                placeholder="Select"
+                style = "width:70%; margin-right:0px;display:block;float:left"
+            ></oi-select>
+            <span class="input-group-btn">
+              <input ng-disabled="submitted" class="btn btn-default" ng-click = "submit()" value = "Search"/>
+              <img ng-show="submitted" src="assets/dist/img/hourglass.svg">
+            </span>
+          </div>
           <posts-multiple data="data"></posts-multiple>
         </div>
       </div>
