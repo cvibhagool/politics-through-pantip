@@ -97,6 +97,8 @@ app.directive('postsSingle', function(){
       y.range([height, 0]);
       y2.range([height2, 0]);
 
+      yAxis.innerTickSize(-width).outerTickSize(0).tickPadding(10);
+
       update();
     }
 
