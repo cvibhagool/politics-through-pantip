@@ -149,6 +149,10 @@
     .single-search{
       width: 30%;
     }
+
+    .table-header{
+      
+    }
 </style>
 
   <script src="assets/dist/js/lib.min.js"></script>
@@ -168,8 +172,9 @@
       </div>
       <div class = "all-posts" ng-controller="SingleCtrl" ng-init="init(['_all'])">
         <div class = "main">
-          <posts-single data="data" cur-spike='curSpike'></posts-single>
+          <posts-single data="data" cur-spike='curSpike' start-date='startDate' end-date='endDate'></posts-single>
           <news data="data" cur-spike='curSpike'></news>
+          <top-table data = 'topPosts' start-date='startDate' end-date='endDate'></top-table>
         </div>
       </div>
       <div class = "text">

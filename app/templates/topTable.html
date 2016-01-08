@@ -1,0 +1,19 @@
+<h3 style = "text-align:center">Top Posts from {{ startDate | date:'dd/MM/yyyy' }} to {{ endDate | date:'dd/MM/yyyy' }} </h3>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Comment Count</th>
+      <th>Upvote Count</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="post in topPosts">
+      <td>{{ post.title }}</td>
+      <td>{{ post.comment_count }}</td>
+      <td>{{ post.upvote_count }}<td>
+      <td>{{ post.date_time | date:'dd/MM/yyyy' }}<td>
+    </tr>
+  </tbody>
+</table>

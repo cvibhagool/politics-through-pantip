@@ -1,4 +1,4 @@
-app.directive('postsSingle', function(){
+app.directive('postsSingle', ['$timeout', function($timeout){
   function link(scope, el, attr){
     el = el[0];
     var margin = {top: 50, right: 10, bottom: 100, left: 50},
@@ -31,7 +31,8 @@ app.directive('postsSingle', function(){
 
     var brush = d3.svg.brush()
       .x(x2)
-      .on("brush", brushed);
+      .on("brush", brushed)
+      .on("brushend", updateDates);
 
     var focus = svg.append("g")
       .attr("class", "focus")
@@ -175,7 +176,8 @@ app.directive('postsSingle', function(){
       brush.extent(d3.extent(posts.map(function(d) { return d.date_time; })));
       svg.select(".brush").call(brush);
       brushed();
-
+      updateDates();
+      
       svg.selectAll(".resize").append("path")
       .attr("class", "handle")
       .attr("transform", "translate(0," +  45 / 2 + ")")
@@ -221,7 +223,8 @@ app.directive('postsSingle', function(){
 
     function brushed() {
       //Update the scale of x
-      x.domain(brush.empty() ? x2.domain() : brush.extent());
+      var brushExtent = brush.extent();
+      x.domain(brush.empty() ? x2.domain() : brushExtent);
       //Update the area graph
       focus.select(".area").attr("d", area);
       //Update the x axis
@@ -230,10 +233,19 @@ app.directive('postsSingle', function(){
       updateMarkers();
     }
 
+    function updateDates(){
+      console.log("Brushend");
+      var brushExtent = brush.extent();
+      $timeout(function(){
+        scope.startDate = brushExtent[0];
+        scope.endDate = brushExtent[1];
+      });
+    }
+    
   }
   return {
     link: link,
     restrict: 'E',
-    scope: { data: '=', curSpike: '='}
+    scope: { data: '=', curSpike: '=', startDate: '=', endDate: '='}
   };
-});
+}]);
