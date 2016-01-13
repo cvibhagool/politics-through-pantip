@@ -167,20 +167,20 @@
       <div class = "text">
         <p><a href="http://pantip.com" target="_blank">Pantip.com</a> is the de facto discussion forum about everything in Thailand, and there is no close second. Its sub forums include topics ranging from food, Thai television dramas to photograph, finance, and politics. Think: Like Reddit, but your parents also find use from it. Pantip is 4th most trafficked website in Thailand, after Google, Facebook, and Youtube, making it the most visited Thai website.</p>
       
-        <p><a href="http://pantip.com/forum/rajdumnern" target="_blank">Rajdumnern</a>, one of Pantip's sub forums, houses the discussion of politics and current events in Thailand. Because of its active community, and relative anonymity (but not total), Rajdumnern is often at the crosshair of political censorship. Having said that, Pantip still captures the majority of public’s mood at each point in time, and I think in many ways it is the closest tool to a time machine which allows us to take a peek back into the past, and relive the feelings Thai people experience as nation. Thailand has been through a lot - experiencing 19 coups d'état since the transition from absolute monarchy to constitutional monarchy in 1932, with the most recent coup in May 2014. There is a saying that Thai people forget easily, meaning Thai people as a nation never learn from their past mistakes, and because of that, we are stuck in a cycle of political polarization. Going with the idea that Pantip provides a reflection of the past, I collected the posts from Rajdumnern, and made a tool for you to explore the trends of different topics over the past few years. It is hoped that you would remember how things were not too long ago, or learn something interesting!</p>
+        <p><a href="http://pantip.com/forum/rajdumnern" target="_blank">Rajdumnern</a>, one of Pantip's sub forums, houses the discussion of politics and current events in Thailand. Because of its active community, and relative anonymity (but not total), Rajdumnern is often at the crosshair of political censorship. Having said that, Pantip still captures the majority of public’s mood at each point in time, and I think in many ways it is the closest tool to a time machine which allows us to take a peek back into the past, and relive the feelings Thai people experience as nation. Thailand has been through a lot - experiencing 19 coups d'état since the transition from absolute monarchy to constitutional monarchy in 1932, with the most recent coup in May 2014. There is a saying that Thai people forget easily, meaning Thai people as a nation never learn from their past mistakes, and because of that, we are stuck in a cycle of political polarization. Going with the idea that Pantip provides a reflection of the past, I collected the posts from Rajdumnern, and made a tool for you to explore the trends of different topics over the past few years.</p>
 
       </div>
       <div class = "all-posts" ng-controller="SingleCtrl" ng-init="init(['_all'])">
         <div class = "main">
           <posts-single data="data" cur-spike='curSpike' start-date='startDate' end-date='endDate'></posts-single>
           <news data="data" cur-spike='curSpike'></news>
-          <top-table data = 'topPosts' start-date='startDate' end-date='endDate'></top-table>
+          <top-table data = 'topPosts' start-date='startDate' end-date='endDate' keywords='keywords'></top-table>
         </div>
       </div>
       <div class = "text">
         <p>To collect the data, I built a scraper to gather every post from Rajdumnern created after Pantip upgraded the website in December 2012 to the present day. I had wanted to collect the comments, but that proved to be too many to be worth the effort and time - I had more than 1 million comments before giving up. The total number of posts came to more than ~210,000. The graph above shows the number of posts per day across the time frame mentioned earlier. You might notice that the spikes in number of daily posts correspond to different important political events in Thailand, and you would be right! For example, there were large numbers of posts between November '13 and June '14, corresponding to the <a href="https://en.wikipedia.org/wiki/2013%E2%80%9314_Thai_political_crisis" target="_blank">political crisis</a> in that period.</p>
 
-        <p>The red markers are in place of spikes of number of daily posts. These spikes are determined by an algorithm, so some of them may be missing or look a bit out of place. If you think about it, spikes are easy to determine visually, but there isn't a clear quantitative definition of a spike. If you are interested in more the technical details behind this project, I'll be writing it up on <a href="http://benv.io/posts">here</a> (write up still in progress). To give more contexts to these spikes, we should try to understand the current events at each point in time. To do that, I grab ten news headlines from Google News with keyword ‘การเมือง’ (‘politics’ in Thai) on each date of spike. You can see the news to the right of the graph, and if you hover over the red markers, the news will change to the corresponding date.
+        <p>The red markers are in place of spikes of number of daily posts. These spikes are determined by an algorithm, so some of them may be missing or look a bit out of place. If you think about it, spikes are easy to determine visually, but there isn't a clear quantitative definition of a spike. If you are interested in more the technical details behind this project, I'll be writing it up on <a href="http://benv.io/posts">here</a>. To give more contexts to these spikes, we should try to understand the current events at each point in time. To do that, I grab ten news headlines from Google News with keyword ‘การเมือง’ (‘politics’ in Thai) on each date of spike. You can see the news to the right of the graph, and if you hover over the red markers, the news will change to the corresponding date.
         </p>
       </div>
 
@@ -214,8 +214,9 @@
               <img ng-show="submitted" src="assets/dist/img/hourglass.svg">
             </span>
           </form>
-          <posts-single data="data" cur-spike='curSpike'></posts-single>
+          <posts-single data="data" cur-spike='curSpike' start-date='startDate' end-date='endDate'></posts-single>
           <news data="data" cur-spike='curSpike'></news>
+          <top-table data = 'topPosts' start-date='startDate' end-date='endDate' keywords='keywords'></top-table>
         </div>
       </div>
 
@@ -248,6 +249,16 @@
           <posts-multiple data="data"></posts-multiple>
         </div>
       </div>
+      
+      <hr>
+
+      <h2> FIN </h2>
+
+      <div class = "text">
+        <p> We are just scratching the surface of how we can explore and analyze the data from Pantip. I had thought about applying natural language processing, and doing some sentiment analysis, but it is very difficult due to the structure of Thai language. I think the data as it stands is too rudimentary to apply the fancy analytical methods to talk about things within the area of Thai politics. This is an exciting start, there are many other ideas to explore! I'll be sure to collect more data from Pantip, so we can talk about something else other than politics.</p>
+      </div>
+
+
     </div>
   </body>
 

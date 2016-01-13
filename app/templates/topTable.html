@@ -10,7 +10,7 @@
   </thead>
   <tbody>
     <tr ng-repeat="post in topPosts">
-      <td>{{ post.title }}</td>
+      <td><a ng-href="http://pantip.com/topic/{{post.id}}" target="_blank">{{ post.title }}</a></td>
       <td>{{ post.comment_count }}</td>
       <td>{{ post.upvote_count }}<td>
       <td>{{ post.date_time | date:'dd/MM/yyyy' }}<td>
