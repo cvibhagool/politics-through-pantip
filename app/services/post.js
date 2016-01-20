@@ -85,7 +85,7 @@ app.factory('postService', ['$http','$location', function($http,$location) {
     };
 
   var getTopPosts = function(keyword, start_date, end_date, order_by, callback){
-    var requestUrl = apiRoot + 'pantip/top?start_date=' + start_date + '&end_date=' + end_date + '&keyword=' + keyword;
+    var requestUrl = apiRoot + 'pantip/top?start_date=' + start_date + '&end_date=' + end_date + '&keyword=' + keyword + '&order_by=' + order_by;
     $http.get(requestUrl).
       success(function(rawData, status, headers, config) {
         data = cleanTopData(rawData);

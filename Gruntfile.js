@@ -4,7 +4,7 @@ module.exports = function(grunt) {
     concat: {
       build: {
         files: {
-          'assets/dist/js/lib.min.js': ['bower_components/angular/angular.min.js','bower_components/d3/d3.min.js', 'bower_components/oi.select/dist/select.js', 'bower_components/angular-smart-table/dist/smart-table.min.js'],
+          'assets/dist/js/lib.min.js': ['bower_components/angular/angular.min.js', 'bower_components/d3/d3.min.js', 'bower_components/oi.select/dist/select.js', 'bower_components/angular-smart-table/dist/smart-table.min.js'],
           'assets/dist/js/client.min.js': ['assets/client/**/*.js'],
           'assets/dist/js/app.min.js': ['app/**/*.js']
         }

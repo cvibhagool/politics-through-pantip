@@ -4,3 +4,8 @@ app.config(['$httpProvider', function($httpProvider) {
       delete $httpProvider.defaults.headers.common['X-Requested-With'];
     }
 ]);
+app.filter('replace', function(){
+  return function(text) {
+       return text.replace(/&quot;/g,"'").replace(/&#39;/g,'"');
+      };
+});

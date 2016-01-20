@@ -1,19 +1,22 @@
-<h3 style = "text-align:center">Top Posts from {{ startDate | date:'dd/MM/yyyy' }} to {{ endDate | date:'dd/MM/yyyy' }} </h3>
+<h3 style = "text-align:center">Top Posts {{ startDate | date:'dd/MM/yyyy' }} - {{ endDate | date:'dd/MM/yyyy' }}</h3>
 <table class="table table-striped">
   <thead>
     <tr>
       <th>Title</th>
-      <th>Comment Count</th>
-      <th>Upvote Count</th>
+      <th ng-click="sortBy = 'comment_count'">Comment Count <span ng-show="sortBy == 'comment_count'" class="glyphicon glyphicon-menu-down"></span></th>
+      <th ng-click="sortBy = 'upvote_count'">Upvote Count <span ng-show="sortBy == 'upvote_count'" class="glyphicon glyphicon-menu-down"></span></th>
       <th>Date</th>
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat="post in topPosts">
-      <td><a ng-href="http://pantip.com/topic/{{post.id}}" target="_blank">{{ post.title }}</a></td>
+    <tr ng-show = "!loading" ng-repeat="post in topPosts">
+      <td><a ng-href="http://pantip.com/topic/{{post.id}}" target="_blank">{{ post.title | replace }}</a></td>
       <td>{{ post.comment_count }}</td>
-      <td>{{ post.upvote_count }}<td>
-      <td>{{ post.date_time | date:'dd/MM/yyyy' }}<td>
+      <td>{{ post.upvote_count }}</td>
+      <td>{{ post.date_time | date:'dd/MM/yyyy' }}</td>
     </tr>
   </tbody>
 </table>
+<div> 
+  <img ng-show = "loading" class = "center-block" src="assets/dist/img/ellipsis.svg"> 
+</div>
