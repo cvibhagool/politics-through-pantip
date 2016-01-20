@@ -234,7 +234,6 @@ app.directive('postsSingle', ['$timeout', function($timeout){
     }
 
     function updateDates(){
-      console.log("Brushend");
       var brushExtent = brush.extent();
       $timeout(function(){
         scope.startDate = brushExtent[0];

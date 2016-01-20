@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="application-name" content="Thai Politics Through Pantip" />
     <meta name="description" content="See how can Pantip.com can give us a window into the present and the past of Thai Politics.">
-    
+
     <meta property="og:title" content = "Thai Politics Through Pantip" />
     <meta property="og:site_name" content = "Ben Vibhagool" />
     <meta property="og:url" content = "http://benv.io/politics-through-pantip"  />
@@ -37,6 +37,12 @@
         border-radius: 0px !important;
       }
 
+      .logo{
+        font-size: 18px;
+        font-weight: 900;
+        float: right;
+      }
+
       .select-search{
         border-radius: 0px !important;
       }
@@ -47,14 +53,14 @@
         border-color: #18bc9c !important;
       }
 
-      h1,h2,h3,h4,h5,h6,p,a,text{
+      h1,h2,h3,h4,h5,h6,p,a,text, ol, li{
           font-family: 'Source Sans Pro', sans-serif !important;
           -webkit-font-smoothing: antialiased !important;
       }
 
       .text{
         margin-top: 5px;
-        line-height: 1.5;
+        line-height: 1.8;
         font-size: 17px;
         margin-top:10px;
       }
@@ -175,22 +181,27 @@
       .container{
         margin-top: 15px;
         margin-bottom: 15px;
+        padding-left: 70px !important;
+        padding-right: 70px !important;
       }
     </style>
   </head>
   <script src="assets/dist/js/lib.min.js"></script>
   <link rel="stylesheet" href="assets/dist/css/lib.min.css">
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
+  <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' type='text/css'>
   <body ng-app="myApp">
     <div class = "shell container">
+      <div class = "logo">
+        <a href='http://benv.io' style = "color:black" target = "_blank">benv.io</a>
+      </div>
       <div class = "title header">
         <h1> Thai Politics through Pantip </h1>
       </div>
       <div class = "text">
-        <p><a href="http://pantip.com" target="_blank">Pantip.com</a> is the de facto discussion forum about everything in Thailand, and there is no close second. Its sub forums include topics ranging from food, Thai television dramas to photograph, finance, and politics. Think: Like Reddit, but your parents also find use from it. Pantip is 4th most trafficked website in Thailand, after Google, Facebook, and Youtube, making it the most visited Thai website.</p>
+        <p><a href="http://pantip.com" target="_blank">Pantip.com</a> is the de facto discussion forum about everything in Thailand, and there is no close second. Its sub forums include topics ranging from food, Thai television dramas to photograph, finance, and politics. Think: Like <a href="http://reddit.com" target="_blank">Reddit</a>, but anyone - from your parents to your friends occsionally go on it. Pantip is <a href="http://www.alexa.com/topsites/countries/TH" target="_blank">4th</a> most trafficked website in Thailand, after Google, Facebook, and Youtube, making it the most visited Thai website.</p>
       
-        <p><a href="http://pantip.com/forum/rajdumnern" target="_blank">Rajdumnern</a>, one of Pantip's sub forums, houses the discussion of politics and current events in Thailand. Because of its active community, and relative anonymity (but not total), Rajdumnern is often at the crosshair of political censorship. Having said that, Pantip still captures the majority of public’s mood at each point in time, and I think in many ways it is the closest tool to a time machine which allows us to take a peek back into the past, and relive the feelings Thai people experience as nation. Thailand has been through a lot - experiencing 19 coups d'état since the transition from absolute monarchy to constitutional monarchy in 1932, with the most recent coup in May 2014. There is a saying that Thai people forget easily, meaning Thai people as a nation never learn from their past mistakes, and because of that, we are stuck in a cycle of political polarization. Going with the idea that Pantip provides a reflection of the past, I collected the posts from Rajdumnern, and made a tool for you to explore the trends of different topics over the past few years.</p>
+        <p><a href="http://pantip.com/forum/rajdumnern" target="_blank">Rajdumnern</a>, one of Pantip's sub forums, houses the discussion of politics and current events in Thailand. Because of its active community, and relatively anonymous membership, Rajdumnern is often at the crosshair of political censorship. Having said that, Pantip still captures the majority of public’s mood at each point in time, and I think in many ways it is the closest tool to a time machine which allows us to take a peek back into the past, and relive the feelings Thai people experience as nation. Thailand has been through a lot - experiencing 19 coups d'état since the transition from absolute monarchy to constitutional monarchy in 1932, with the most recent coup in May 2014. There is a saying that Thai people forget easily, meaning Thai people as a nation never learn from their past mistakes, and because of that, we are stuck in a cycle of political polarization. Going with the idea that Pantip provides a reflection of the past, I collected the posts from Rajdumnern, and made a tool for anyone to explore the trends of different topics, and get a brief idea how things over the past few years.</p>
 
       </div>
       <div class = "all-posts" ng-controller="SingleCtrl" ng-init="init(['_all'])">
@@ -203,7 +214,7 @@
       <div class = "text">
         <p>To collect the data, I built a scraper to gather every post from Rajdumnern created after Pantip upgraded the website in December 2012 to the present day. I had wanted to collect the comments, but that proved to be too many to be worth the effort and time - I had more than 1 million comments before giving up. The total number of posts came to more than ~210,000. The graph above shows the number of posts per day across the time frame mentioned earlier. You might notice that the spikes in number of daily posts correspond to different important political events in Thailand, and you would be right! For example, there were large numbers of posts between November '13 and June '14, corresponding to the <a href="https://en.wikipedia.org/wiki/2013%E2%80%9314_Thai_political_crisis" target="_blank">political crisis</a> in that period.</p>
 
-        <p>The red markers are in place of spikes of number of daily posts. These spikes are determined by an algorithm, so some of them may be missing or look a bit out of place. If you think about it, spikes are easy to determine visually, but there isn't a clear quantitative definition of a spike. If you are interested in more the technical details behind this project, I'll be writing it up on <a href="http://benv.io/posts">here</a>. To give more contexts to these spikes, we should try to understand the current events at each point in time. To do that, I grab ten news headlines from Google News with keyword ‘การเมือง’ (‘politics’ in Thai) on each date of spike. You can see the news to the right of the graph, and if you hover over the red markers, the news will change to the corresponding date.
+        <p>The red markers are in place of spikes of number of daily posts. These spikes are determined by an algorithm, so some of them may be missing or look a bit out of place. If you think about it, spikes are easy to determine visually, but there isn't a clear quantitative definition of a spike. If you are interested in more the technical details behind this project, I'll be writing it up on <a href="http://benv.io">here</a>. To give more contexts to these spikes, we should try to understand the current events at each point in time. To do that, I grab ten news headlines from Google News with keyword ‘การเมือง’ (‘politics’ in Thai) on each date of spike. You can see the news to the right of the graph, and if you hover over the red markers, the news will change to the corresponding date.
         </p>
       </div>
 
@@ -213,7 +224,7 @@
       <h2> What's on People's Mind </h2> 
 
       <div class = "text">
-        <p>Next, we can dive a little bit deeper to see how popular a topic is overtime. In this case, we are interested in the proportion of number of posts containing a certain keyword per day. Basically, any post with the keyword in its title or body is counted, and divided by the total number of posts from that day. Note that I mentioned earlier that I did not collect the comments, so I could not include it as part of the analysis. Like before, the spikes and news are also shown here. Notice that there is input box below for you to put in any keywords you want to query. Let me know if you find something interesting!</p>
+        <p>Next, we can dive a little bit deeper to see how popular a topic is overtime. In this case, we are interested in the proportion of number of posts containing a certain keyword per day. Basically, any post with the keyword in its title or body is counted, and divided by the total number of posts from that day. Like before, the spikes and news are also shown here. Notice that there is input box below for you to put in any keywords you want to query. Play around and see if you can find an interesting keyword or trends!</p>
        </div>
 
       <div class = "header">
@@ -223,9 +234,8 @@
       <div class = "row">
         <img class = "img-thumbnail" style='float:left;width:150px;height:150px; margin-right:10px; margin-left:10px;' src="assets/dist/img/prayuth.jpg"/>
         <div class = "text">
-        <p>Speaking of poularity (in context of this project), there can't be a more popular person than our current unelected Prime Minister, <a href="">General Prayuth Chan-o-cha</a> who launched the military coup against the government and assumed control of the country in May 2014. We apply the idea above to the keyword ‘ประยุทธ์’, his first name, and the name most people use when they refer to him. I am sure that he has other nick names, but let’s not go there for now. You can see below that he became very popular after the coup in May 2014. He was most talked about on November 4, 2014 when he talked abouting cracking down on political movements using Article 44 of the Interim Constitution. 
+        <p>Speaking of poularity (in context of this project), there can't be a more popular person than our current unelected Prime Minister, <a href="">General Prayuth Chan-o-cha</a> who launched the military coup against the government and assumed control of the country in May 2014. We apply the idea above to the keyword ‘ประยุทธ์’, his first name, and the name most people use when they refer to him. I am sure that he has other nick names, but let’s not go there for now. You can see below that he became very popular after the coup in May 2014. He was most talked about on November 4, 2014 when he talked abouting cracking down on political movements using Article 44 of the Interim Constitution.</p>
         </div>
-        </p>
       </div>
 
       <div class = "single-posts" ng-controller="SingleCtrl" ng-init="init(['ประยุทธ์'])">
@@ -248,7 +258,54 @@
       <h2> Popularity Comparison </h2>
 
       <div class = "text">
-        <p>Now you might be wondering how popular diferent topics are relative to each other. As before, we look at the proportion of each keyword over time. Just for fun, I present to you the <a href ="http://www.bbc.com/news/world-asia-pacific-13294268" target="_blank">colors</a> of Thai politics. There are the red shirts, yellow shirts, and multicolor shirts. There are other colors that come and go, and usually they are opposed to the red shirts, and are refered to as the multicolor shirts. In Thailand, the color you wear may be used to infered your political afflication. It's not that big of an issue now, but there was definitely a period when you had to think twice about the color you wear for the day. No joke! </p>
+        <p>Now you might be wondering how popular diferent topics are relative to each other. As before, we look at the proportion of each keyword over time. We'll be looking at different keywords side by side, and like before you can put in your own keywords.</p>
+      </div>
+
+      <div class = "header">
+        <h3> Major Political Figures </h3>
+      </div>
+
+      <div class = "text">
+        <p>Let's see how how recent political figures fare against each other.</p>
+        <ul>
+          <li><a href="https://en.wikipedia.org/wiki/Thaksin_Shinawatra" target="_blank">Thaksin Shinawatra 'ทักษิน'</a> - PM between 2001 - 2006 before being ousted by a coup. The man at the begining of all the drama.</li>
+          <li><a href="https://en.wikipedia.org/wiki/Abhisit_Vejjajiva" target="_blank">Abhisit Vejjajiva 'อภิสิทธิ์'</a> - Former PM from Democrat Party from 2008-2011. Lost his seat to Yingluck in 2011.</li> 
+          <li><a href="https://en.wikipedia.org/wiki/Suthep_Thaugsuban" target="_blank">Suthep Thaugsuban 'สุเทพ'</a> - Former secretary-general of Democrat Party and protest leader during the political crisis in 2013-2014.</li>
+          <li><a href="https://en.wikipedia.org/wiki/Yingluck_Shinawatra" target="_blank">Yingluck Shinawatra 'ยิ่งลักษณ์'</a> - Thaksin's sister who became the PM after Abhitsit through election. Overthrown by coup in 2014.</li>
+          <li><a href="https://en.wikipedia.org/wiki/Prayut_Chan-o-cha" target="_blank">Prayuth Chan-ocha 'ประยุทธ์'</a> - Leader of 2014 coup and current PM.</li>
+          <li>Did I miss someone? Hopefully not.</li>
+        </ul>
+        <p>Thai politics is pretty volatile, and 'hairy' if you look at the major characters. Professor Darren Zook at Berkeley, during his lecture on Thailand, said Thai politics is like a korean drama, and I couldn't have agreed anymore! If you are intersted, <a href="http://www.economist.com/blogs/graphicdetail/2015/09/graphics" target_"_blank">here's</a> a great resource for becoming familar with Thai politics.</p>
+      </div>
+
+      <div class = "multi-posts" ng-controller="MultiCtrl" ng-init="init(['ทักษิน','อภิสิทธิ์', 'ยิ่งลักษณ์','สุเทพ','ประยุทธ์'])">
+        <div class = "main">
+          <div class = "multi-input" class = "style:margin: 0 auto;">
+            <oi-select
+                ng-model="searchBox"
+                multiple
+                oi-select-options="{
+                    newItem: true,
+                    saveTrigger: 'enter blur space . , ;'
+                }"
+                placeholder="Select"
+                style = "width:70%; margin-right:0px;display:block;float:left"
+            ></oi-select>
+            <span class="input-group-btn">
+              <input ng-disabled="submitted" class="btn btn-default" ng-click = "submit()" value = "Search"/>
+              <img ng-show="submitted" src="assets/dist/img/hourglass.svg">
+            </span>
+          </div>
+          <posts-multiple data="data"></posts-multiple>
+        </div>
+      </div>
+
+      <div class = "header">
+        <h3> Colors of Thai Politics </h3>
+      </div>
+
+      <div class = "text">
+        <p>I present to you the <a href ="http://www.bbc.com/news/world-asia-pacific-13294268" target="_blank">colors</a> of Thai politics. In Thailand, the color you wear may be used to infered your political afflication. It's not that big of an issue now, but there was definitely a period when you had to think twice about the color you wear for the day. There are the <a href = "https://en.wikipedia.org/wiki/United_Front_for_Democracy_Against_Dictatorship">red 'แดง' shirts</a>, <a href = "https://en.wikipedia.org/wiki/People%27s_Alliance_for_Democracy">yellow 'เหลือง' shirts</a>. The yellow shirts are original movement that opposed Thaksin and his party. After the 06 coup, come the red shirts who are basically the supporter of Thaksin, Yingluck, and Puea Thai Party. Since then other colors that come and go, and usually they are opposed to the red shirts. I also put in multi-color 'สลิ่ม' as a keyword, referring to the various colors that come and go, normally with a poor connotation.</p>
       </div>
 
       <div class = "multi-posts" ng-controller="MultiCtrl" ng-init="init(['แดง','เหลือง','สลิ่ม'])">
@@ -278,7 +335,7 @@
       <h2> FIN </h2>
 
       <div class = "text">
-        <p> We are just scratching the surface of how we can explore and analyze the data from Pantip. I had thought about applying natural language processing, and doing some sentiment analysis, but it is very difficult due to the structure of Thai language. I think the data as it stands is too rudimentary to apply the fancy analytical methods to talk about things within the area of Thai politics. This is an exciting start, there are many other ideas to explore! I'll be sure to collect more data from Pantip, so we can talk about something else other than politics.</p>
+        <p> We are just scratching the surface of how we can explore and analyze the data from Pantip. I had thought about applying natural language processing, and doing some sentiment analysis, but it is very difficult due to the structure of Thai language. I think the data as it stands is too rudimentary to apply the fancy analytical methods to talk about things within the area of Thai politics. This is an exciting start, there are many other ideas to explore! I'll be sure to collect more data from Pantip, so we can talk about something else other than politics. Stay tuned!</p>
       </div>
 
 
