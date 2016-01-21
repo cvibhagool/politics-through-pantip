@@ -112,8 +112,8 @@ app.directive('postsSingle', ['$timeout', function($timeout){
 
     function update(){
       if(!scope.data){ return;}
-
-      if (data.type === 'absolute'){
+      
+      if (scope.data.type === 'absolute'){
         format = d3.format(",.0f");
       } else {
         format = d3.format(".0%");
